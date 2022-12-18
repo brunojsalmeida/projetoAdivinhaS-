@@ -31,6 +31,7 @@ public class Gallery : MonoBehaviour
                 // Create Texture from selected image
                 Texture2D texture = NativeGallery.LoadImageAtPath(path, maxSize);
                 image.texture = texture;
+                QuizImageOnly.texture = texture;
                 if (texture == null)
                 {
                     Debug.Log("Couldn't load texture from " + path);

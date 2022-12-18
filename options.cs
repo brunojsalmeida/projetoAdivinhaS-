@@ -10,7 +10,7 @@ public class options : MonoBehaviour
 
     public GameObject painel1Opcoes, painel2Opcoes, painel3Opcoes;
     public Toggle       onOffMusica, onOffEfeitos, onOffTempo, onOffCorreta;
-    public Slider       volumeM, volumeE, duracaoT, duracaoP;
+    public Slider       volumeM, volumeE, duracaoT, duracaoP, quantidadeP;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class options : MonoBehaviour
         soundController.playButton();
         painel1Opcoes.SetActive(!onOff);
         painel2Opcoes.SetActive(onOff);
-        painel3Opcoes.SetActive(!onOff);
+        //painel3Opcoes.SetActive(!onOff);
     }
 
     public void deletarPontuacoes()
@@ -131,6 +131,12 @@ public class options : MonoBehaviour
         PlayerPrefs.SetFloat("tempoResponder", duracaoT.value);
     }
 
+    public void QuantidadePerguntas()
+    {
+        // PlayerPrefs.SetFloat("qtdPerguntas", quantidadeP.value);
+        Questions.numberQuestion = quantidadeP.value;
+    }
+
     public void duracaoCorreta()
     {
         PlayerPrefs.SetFloat("qntPiscadas", duracaoP.value);
@@ -147,6 +153,7 @@ public class options : MonoBehaviour
         float volumeMusica = PlayerPrefs.GetFloat("volumeMusica");
         float volumeEfeitos = PlayerPrefs.GetFloat("volumeEfeitos");
         float duracaoTempo = PlayerPrefs.GetFloat("tempoResponder");
+        float quantidadePerguntas = PlayerPrefs.GetFloat("qtdPerguntas");
         float duracaoCorreta = PlayerPrefs.GetFloat("qntPiscadas");
 
         bool tocarMusica = false;

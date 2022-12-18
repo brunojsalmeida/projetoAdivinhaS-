@@ -7,12 +7,15 @@ public class ComandosBasicos : MonoBehaviour
 {
     private fade            fade;
     private SoundController soundController;
+    private Menu menu;
 
     public GameObject painel1Sair, painel2Sair;
+    public Camera Cam;
 
     void Start()
     {
         soundController = FindObjectOfType(typeof(SoundController)) as SoundController;
+        menu = FindObjectOfType(typeof(Menu)) as Menu;
         fade = FindObjectOfType(typeof(fade)) as fade;
     }
 

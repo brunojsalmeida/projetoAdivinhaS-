@@ -46,13 +46,14 @@ public class ModoJogo1 : MonoBehaviour
     public float    tempoResponder;
     public bool     mostrarCorreta;
     public float      qntPiscadas;
+    //public float qtdPerguntas;
 
     [Header("Configuração das Perguntas")]
     public string[] perguntas;
     public Sprite[] perguntasImg;
     public string[] correta;
-    //public int      qtdPerguntas;
-    //public List<int> listaPerguntas;
+    public int qtdPerguntas;
+    public List<int> listaPerguntas;
 
     [Header("Configuração das Alternativas")]
     public string[] AlternativasA;
@@ -110,6 +111,7 @@ public class ModoJogo1 : MonoBehaviour
         }
 
         qntPiscadas = PlayerPrefs.GetFloat("qntPiscadas");
+        //qtdPerguntas = PlayerPrefs.GetInt("qtdPerguntas");
 
         idTema = PlayerPrefs.GetInt("idTema");
         notaMin1estrela = PlayerPrefs.GetInt("notaMin1estrela");
@@ -132,6 +134,8 @@ public class ModoJogo1 : MonoBehaviour
         notaMin1estrela = 3;
         notaMin2estrela = 5;
         notaMin3estrela = 7;
+
+        infoRespostasTxt.text = "Respondeu " + qtdRespondida + " de " + Questions.numberQuestion + "";
 
 
     }
@@ -159,12 +163,12 @@ public class ModoJogo1 : MonoBehaviour
         if(perguntasAleatorias == true)
         {
             bool addPergunta = true; 
-
+            
             if(qtdPerguntas > perguntas.Length)
             {
                 qtdPerguntas = perguntas.Length;
             }
-
+            
             while (listaPerguntas.Count < qtdPerguntas)
             { 
                     addPergunta = true;
@@ -191,7 +195,10 @@ public class ModoJogo1 : MonoBehaviour
                 listaPerguntas.Add(i);
             }
         }
+        
         */
+     
+
         if(perguntasComImg == true)
         {
             perguntaImg.sprite = perguntasImg[idResponder];
@@ -276,7 +283,8 @@ public class ModoJogo1 : MonoBehaviour
 
         EventSystem.current.SetSelectedGameObject(null);
 
-        if (idResponder < perguntas.Length)
+        // if (idResponder < perguntas.Length)
+        if (idResponder < Questions.numberQuestion)
         {
             if (perguntasComImg == true)
             {
@@ -309,8 +317,10 @@ public class ModoJogo1 : MonoBehaviour
 
     void progressaoBarra()
     {
-        infoRespostasTxt.text = "Respondeu " + qtdRespondida + " de " +perguntas.Length + "";
-        percProgresso = qtdRespondida / perguntas.Length;
+        // infoRespostasTxt.text = "Respondeu " + qtdRespondida + " de " + perguntas.Length + "";
+        infoRespostasTxt.text = "Respondeu " + qtdRespondida + " de " + Questions.numberQuestion + "";
+        // percProgresso = qtdRespondida / perguntas.Length;
+        percProgresso = qtdRespondida / Questions.numberQuestion;
         barraProgresso.transform.localScale = new Vector3(percProgresso, 1, 1);
     }
 
